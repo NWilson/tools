@@ -35,6 +35,8 @@ func sortImports(env *ProcessEnv, fset *token.FileSet, f *ast.File) {
 		}
 
 		// Identify and sort runs of specs on successive lines.
+		d.Specs = sortSpecs(env, fset, f, d.Specs)
+/*
 		i := 0
 		specs := d.Specs[:0]
 		for j, s := range d.Specs {
@@ -46,6 +48,7 @@ func sortImports(env *ProcessEnv, fset *token.FileSet, f *ast.File) {
 		}
 		specs = append(specs, sortSpecs(env, fset, f, d.Specs[i:])...)
 		d.Specs = specs
+*/
 
 		// Deduping can leave a blank line before the rparen; clean that up.
 		if len(d.Specs) > 0 {
